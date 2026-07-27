@@ -1,894 +1,399 @@
 /* =========================
    VARIABLES
 ========================= */
-
 :root {
-
-    --pink:#ff4d88;
-    --pink-light:#ff9fbd;
-    --purple:#8b2cff;
-    --dark:#05010a;
-    --glass:rgba(255,255,255,0.08);
-
+  --pink: #ff4d88;
+  --pink-light: #ff9fbd;
+  --purple: #8b2cff;
+  --dark: #05010a;
+  --black-true: #000000; /* Negro total para la sorpresa final */
+  --glass: rgba(255, 255, 255, 0.08);
 }
-
-
 
 /* =========================
    GENERAL
 ========================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-
-body{
-
-    width:100%;
-    height:100vh;
-
-    overflow:hidden;
-
-    background:
-    radial-gradient(circle at top,#3b0a42,#120018,#05010a);
-
-    color:white;
-
-    font-family:'Poppins',sans-serif;
-
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #3b0a42, #120018, #05010a);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden; /* Evita scroll global */
 }
-
-
 
 /* =========================
    CANVAS ESTRELLAS
 ========================= */
-
-
-#stars{
-
-    position:fixed;
-
-    width:100%;
-    height:100%;
-
-    top:0;
-    left:0;
-
-    z-index:0;
-
+#stars {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1; /* Estrellas al fondo */
+  pointer-events: none;
 }
-
-
 
 /* =========================
-   PANTALLAS
+   PANTALLAS (Ahora más centradas y adaptables)
 ========================= */
-
-
-.screen{
-
-
-    position:absolute;
-
-    width:100%;
-    height:100vh;
-
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    flex-direction:column;
-
-
-    text-align:center;
-
-
-    padding:30px;
-
-
-    opacity:0;
-
-    pointer-events:none;
-
-
-    transform:
-    scale(1.15)
-    translateY(30px);
-
-
-    filter:blur(10px);
-
-
-    transition:
-    1.2s ease;
-
-
-    z-index:2;
-
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.05) translateY(20px);
+  filter: blur(10px);
+  transition: all 0.8s ease;
+  z-index: 3; /* Contenido por encima de estrellas y corazones */
 }
 
-
-
-.screen.active{
-
-
-    opacity:1;
-
-    pointer-events:auto;
-
-
-    transform:
-    scale(1)
-    translateY(0);
-
-
-    filter:blur(0);
-
+.screen.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1) translateY(0);
+  filter: blur(0);
 }
 
-
-
-
+/* !!! NUEVO: Contenedor interno para asegurar scroll y centrado !!! */
+.screen-content {
+    width: 100%;
+    max-width: 1000px; /* Ancho máximo opcional */
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px; /* Espacio interno global por pantalla */
+    text-align: center;
+    overflow-y: auto; /* Permite scroll vertical dentro de cada pantalla si el contenido es mucho */
+}
 
 /* =========================
- TITULOS
+   TITULOS & TEXTOS
 ========================= */
-
-
-h1,h2{
-
-
-    font-family:'Playfair Display',serif;
-
-
-    text-shadow:
-
-    0 0 20px rgba(255,77,136,.7);
-
-
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  text-shadow: 0 0 20px rgba(255, 77, 136, 0.7);
+  margin-bottom: 10px; /* Reducción de margen inferior */
 }
 
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
 
-h1{
-
-    font-size:4rem;
-
+p {
+  color: #ffe8ef;
+  max-width: 650px;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  line-height: 1.5; /* Línea de texto más compacta */
+  margin: 0 auto 10px auto; /* Reducción de margen inferior */
 }
 
-
-h2{
-
-    font-size:2.5rem;
-
+.small-title {
+  color: #ffb6cc;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  margin-bottom: 10px; /* Reducción de margen inferior */
+  display: block;
 }
-
-
-
-p{
-
-
-    color:#ffe8ef;
-
-    max-width:650px;
-
-    font-size:1.15rem;
-
-    line-height:1.8;
-
-}
-
-
-
-
 
 /* =========================
- INTRO
+   BOTONES
 ========================= */
-
-
-.small-title{
-
-
-    color:#ffb6cc;
-
-    letter-spacing:4px;
-
-    text-transform:uppercase;
-
-    font-size:.8rem;
-
-    margin-bottom:20px;
-
-
+.btn-love {
+  margin-top: 20px; /* Reducción de margen superior */
+  padding: 10px 30px; /* Reducción de padding interno */
+  border: none;
+  border-radius: 50px;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff2e63, #ff8fab);
+  box-shadow: 0 0 15px rgba(255, 46, 99, 0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+  flex-shrink: 0;
 }
 
-
-
-
+.btn-love:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 25px rgba(255, 46, 99, 0.7);
+}
 
 /* =========================
- BOTONES
+   GLASS CARD
 ========================= */
-
-
-.btn-love{
-
-
-    margin-top:30px;
-
-
-    padding:15px 40px;
-
-
-    border:none;
-
-
-    border-radius:50px;
-
-
-    color:white;
-
-
-    font-size:1rem;
-
-
-    cursor:pointer;
-
-
-    background:
-
-    linear-gradient(
-        135deg,
-        #ff2e63,
-        #ff8fab
-    );
-
-
-    box-shadow:
-
-    0 0 25px rgba(255,46,99,.5);
-
-
-    transition:.4s;
-
-
+.glass-card {
+  width: min(650px, 95%);
+  padding: 20px 15px; /* Reducción de padding interno */
+  margin: 10px auto; /* Reducción de margen superior/inferior */
+  background: rgba(255, 255, 255, 0.06); /* Ligeramente más transparente */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
-
-
-
-.btn-love:hover{
-
-
-    transform:
-
-    translateY(-5px)
-    scale(1.05);
-
-
-    box-shadow:
-
-    0 0 45px rgba(255,46,99,.9);
-
-
-}
-
-
-
-
-
-
 
 /* =========================
- GLASS CARD
+   FOTOS & MARCOS (Centrado corregido)
 ========================= */
-
-
-.glass-card{
-
-
-    width:min(650px,90%);
-
-
-    padding:35px;
-
-
-    margin:25px;
-
-
-    background:
-
-    rgba(255,255,255,.08);
-
-
-    backdrop-filter:
-
-    blur(20px);
-
-
-    border-radius:30px;
-
-
-    border:
-
-    1px solid rgba(255,255,255,.15);
-
-
-    box-shadow:
-
-    0 25px 50px rgba(0,0,0,.5);
-
-
+.photo-frame {
+  max-width: 250px; /* Reducción de ancho máximo */
+  width: 42%;
+  max-height: 300px; /* Reducción de altura máxima */
+  border-radius: 20px;
+  padding: 5px;
+  background: linear-gradient(135deg, #ff4d88, #8b2cff);
+  animation: floating 5s infinite ease-in-out;
+  margin: 15px auto; /* !!! CAMBIO CLAVE: Margen automático para centrar !!! */
 }
 
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
 
+.memory-large, .final-photo {
+  max-width: 90%;
+  max-height: 250px; /* Reducción de altura máxima */
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px black;
+  margin: 15px auto; /* !!! CAMBIO CLAVE: Margen automático para centrar !!! */
+}
 
-
-
-
+.final-photo {
+  box-shadow: 0 0 30px rgba(255, 77, 136, 0.6);
+}
 
 /* =========================
- FOTOS
+   GALERIA
 ========================= */
-
-
-.photo-frame{
-
-
-    width:auto;
-
-    height:auto;
-
-
-    overflow:hidden;
-
-
-    border-radius:35px;
-
-
-    padding:8px;
-
-
-    background:
-
-    linear-gradient(
-        135deg,
-        #ff4d88,
-        #8b2cff
-    );
-
-
-    animation:
-
-    floating 5s infinite ease-in-out;
-
-
+.gallery {
+  width: 95%;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Columnas más compactas */
+  gap: 10px; /* Espacio reducido entre fotos */
+  margin: 10px auto; /* Margen reducido superior/inferior */
 }
 
-
-
-
-.photo-frame img{
-
-
-    width:100%;
-
-    height:100%;
-
-
-    object-fit:cover;
-
-
-    border-radius:30px;
-
-
+.gallery img {
+  width: 100%;
+  height: 150px; /* Altura de foto reducida */
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.4s, box-shadow 0.4s;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
 }
 
-
-
-
-
-.memory-large{
-
-
-    width:auto;
-
-    max-height:400px;
-
-
-    object-fit:cover;
-
-
-    border-radius:35px;
-
-
-    box-shadow:
-
-    0 20px 50px black;
-
-
+.gallery img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 20px var(--pink);
 }
-
-
-
-
-
 
 /* =========================
- GALERIA
+   LOVE CARDS
 ========================= */
-
-
-.gallery{
-
-
-    width:90%;
-
-
-    max-width:900px;
-
-
-    display:grid;
-
-
-    grid-template-columns:
-
-    repeat(4,1fr);
-
-
-    gap:20px;
-
-
+.love-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Columnas más compactas */
+  gap: 10px; /* Espacio reducido entre tarjetas */
+  width: 95%;
+  max-width: 800px;
+  max-height: 50vh; /* Altura máxima reducida */
+  overflow-y: auto;
+  padding: 5px;
+  margin: 10px auto; /* Margen reducido superior/inferior */
 }
 
-
-
-
-.gallery img{
-
-
-    width:100%;
-
-    height:250px;
-
-
-    object-fit:cover;
-
-
-    border-radius:25px;
-
-
-    transition:.5s;
-
-
-    box-shadow:
-
-    0 15px 40px black;
-
-
+.love-card {
+  padding: 15px 12px; /* Reducción de padding interno */
+  border-radius: 15px;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.9rem;
+  transition: transform 0.3s;
 }
 
-
-
-.gallery img:hover{
-
-
-    transform:
-
-    scale(1.08)
-    rotate(2deg);
-
-
-    box-shadow:
-
-    0 0 40px var(--pink);
-
-
+.love-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px var(--pink);
 }
-
-
-
-
-
 
 /* =========================
- LOVE CARDS
+   CONTADOR
 ========================= */
-
-
-.love-grid{
-
-
-    display:grid;
-
-
-    grid-template-columns:
-
-    repeat(2,250px);
-
-
-    gap:20px;
-
-
+.counter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px; /* Margen reducido superior */
 }
 
-
-
-.love-card{
-
-
-    padding:30px;
-
-
-    border-radius:25px;
-
-
-    background:
-
-    var(--glass);
-
-
-    backdrop-filter:
-
-    blur(15px);
-
-
-    border:
-
-    1px solid rgba(255,255,255,.2);
-
-
-    transition:.5s;
-
-
+.counter div {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 10px 15px; /* Reducción de padding interno */
+  border-radius: 12px;
+  min-width: 60px;
 }
 
-
-
-.love-card:hover{
-
-
-    transform:
-
-    translateY(-10px);
-
-
-    box-shadow:
-
-    0 0 35px var(--pink);
-
-
+.counter span {
+  display: block;
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  font-weight: 600;
+  color: #ff9fbd;
 }
 
-
-
-
-
-
+.counter small {
+  color: white;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
 
 /* =========================
- CONTADOR
+   CARTA
 ========================= */
-
-
-.counter{
-
-
-    display:flex;
-
-
-    gap:25px;
-
-
-    justify-content:center;
-
-
+.letter {
+  width: min(700px, 95%);
+  padding: 20px 15px; /* Reducción de padding interno */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+  line-height: 1.6; /* Texto más compacto */
+  margin: 10px auto; /* Margen reducido superior/inferior */
 }
-
-
-
-.counter div{
-
-
-    background:
-
-    rgba(255,255,255,.08);
-
-
-    padding:20px;
-
-
-    border-radius:20px;
-
-
-}
-
-
-
-.counter span{
-
-
-    display:block;
-
-
-    font-size:2.5rem;
-
-
-    color:#ff9fbd;
-
-
-}
-
-
-
-.counter small{
-
-
-    color:white;
-
-}
-
-
-
-
 
 /* =========================
- CARTA
+   CORAZONES FLOTANTES (Corregidos)
 ========================= */
-
-
-.letter{
-
-
-    width:min(700px,90%);
-
-
-    padding:40px;
-
-
-    background:
-
-    rgba(255,255,255,.07);
-
-
-    backdrop-filter:
-
-    blur(15px);
-
-
-    border-radius:30px;
-
-
-    font-family:
-
-    'Playfair Display',serif;
-
-
-    font-size:1.3rem;
-
-
-    line-height:2;
-
-
+.heart {
+  position: fixed;
+  z-index: 2; /* !!! CAMBIO CLAVE: Corazones DETRÁS del contenido (.screen tiene z-index 3) !!! */
+  pointer-events: none;
+  animation: float 4s linear forwards;
 }
-
-
-
-
-
 
 /* =========================
- FINAL
+   BOTON MUSICA
 ========================= */
-
-
-.final-title{
-
-
-    font-size:4rem;
-
-
-    color:#ff9fbd;
-
-
+.music-btn {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  z-index: 100; /* Botón siempre visible y clicleable */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #ff4d88;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #ff4d88;
 }
-
-
-
-.final-photo{
-
-
-    width:auto;
-
-
-    height:400px;
-
-
-    object-fit:cover;
-
-
-    border-radius:40px;
-
-
-    margin:30px;
-
-
-    box-shadow:
-
-    0 0 60px rgba(255,77,136,.7);
-
-
-}
-
-
-
-
-
-
 
 /* =========================
- BOTON MUSICA
+   ANIMACIONES, OVERLAY (SORPRESA FINAL)
 ========================= */
-
-
-.music-btn{
-
-
-    position:fixed;
-
-
-    right:25px;
-
-
-    top:25px;
-
-
-    z-index:10;
-
-
-    width:55px;
-
-    height:55px;
-
-
-    border-radius:50%;
-
-
-    border:none;
-
-
-    background:#ff4d88;
-
-
-    color:white;
-
-
-    font-size:25px;
-
-
-    cursor:pointer;
-
-
-    box-shadow:
-
-    0 0 30px #ff4d88;
-
-
+@keyframes floating {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); } /* Flotación más suave */
 }
 
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
 
+/* !!! CAMBIOS CLAVE: Sorpresa final totalmente oscura y suave !!! */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--black-true); /* Fondo negro total */
+  z-index: 9999; /* Por encima de TODO */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+  opacity: 0; /* Empieza invisible */
+  visibility: hidden; /* Oculto para evitar clics */
+  transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out; /* Transición ultra suave */
+}
 
+/* Clase para activar la sorpresa suavemente */
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
 
+.overlay h1.final-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--pink-light);
+    margin-bottom: 20px;
+}
+
+.overlay h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--pink);
+    margin: 20px 0;
+}
+
+.overlay p {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    max-width: 700px;
+    margin-bottom: 15px;
+}
 
 /* =========================
- ANIMACIONES
+   RESPONSIVE (CELULARES PEQUEÑOS)
 ========================= */
-
-
-@keyframes floating{
-
-
-    0%,100%{
-
-        transform:translateY(0);
-
+@media (max-width: 576px) {
+    /* !!! CAMBIO CLAVE: No forzar centrado vertical, dejar scroll natural !!! */
+    .screen {
+        align-items: center; /* Contenido empieza arriba en móviles */
     }
 
-
-    50%{
-
-        transform:translateY(-15px);
-
+    .screen-content {
+        justify-content: center;
+        padding: 15px;
     }
 
+    .love-grid {
+        max-height: 66vh; /* Altura máxima reducida en móviles */
+    }
 
-}
-
-
-
-
-
-/* =========================
- RESPONSIVE
-========================= */
-
-
-@media(max-width:768px){
-
-
-h1{
-
-    font-size:2.8rem;
-
-}
-
-
-
-h2{
-
-    font-size:2rem;
-
-}
-
-
-
-.gallery{
-
-
-    grid-template-columns:
-
-    repeat(2,1fr);
-
-}
-
-
-
-.gallery img{
-
-    height:180px;
-
-}
-
-
-
-.love-grid{
-
-
-    grid-template-columns:1fr;
-
-}
-
-
-
-.counter{
-
-
-    gap:10px;
-
-}
-
-
-.counter span{
-
-    font-size:1.5rem;
-
-}
-
-
-
-.photo-frame{
-
-    width:240px;
-
-    height:280px;
-
-}
-
-
+    .counter div {
+        padding: 8px 12px;
+        min-width: 50px;
+    }
 }
