@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nuestra Historia ❤️</title>
+
+
+    <!-- Fuentes elegantes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Nuestro CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- Fondo animado -->
+<canvas id="stars"></canvas>
+
+
+<!-- Música -->
+<audio id="music" loop>
+
+    <source src="audio/Todo_empezo.mp4" type="audio/mp3">
+
+</audio>
+
+
+
+<!-- Botón música -->
+
+<button class="music-btn" onclick="toggleMusic()">
+
+    🎵
+
+</button>
+
+
+
+
+<!-- ============================= -->
+<!-- ESCENA 1 - INTRO -->
+<!-- ============================= -->
+
+
+<section class="screen active" id="s1">
+
+
+    <div class="intro">
+
+
+        <span class="small-title">
+            Una historia que nadie esperaba
+        </span>
+
+
+        <h1>
+            ❤️ Nuestra Historia ❤️
+        </h1>
+
+
+        <p>
+            Hay historias que nacen con el tiempo...
+            <br>
+            La nuestra nació en un instante.
+            <br>
+            Fue amor a primera vista, y desde ese día comenzó todo.
+        </p>
+
+
+        <button class="btn-love" onclick="go(2)">
+
+            Comenzar nuestra historia
+
+        </button>
+
+
+    </div>
+
+
+</section>
+
+
+
+
+
+
+<!-- ============================= -->
+<!-- ESCENA 2 - EL INICIO -->
+<!-- ============================= -->
+
+
+<section class="screen" id="s2">
+
+
+    <h2>
+        📅 El comienzo
+    </h2>
+
+
+
+    <div class="glass-card">
+
+
+        <p>
+            Todo comenzó un 01 de marzo ❤️
+        </p>
+
+
+        <p>
+            Aquel día nuestras miradas se cruzaron por primera vez.
+            Nunca imaginé que, después de eso,
+            le pedirías a tu amiga que consiguiera mi número.
+            
+            Sin saberlo, ese pequeño momento
+            cambiaría mi vida para siempre,
+            porque ahí comenzó nuestra historia.
+        </p>
+
+
+    </div>
+
+
+
+    <div class="photo-frame">
+
+        <img src="img/img10.jpg">
+
+    </div>
+
+
+
+    <button class="btn-love" onclick="go(3)">
+
+        Continuar ❤️
+
+    </button>
+
+
+</section>
+
+
+
+
+
+
+<!-- ============================= -->
+<!-- ESCENA 3 - MOMENTOS -->
+<!-- ============================= -->
+
+
+<section class="screen" id="s3">
+
+
+    <h2>
+        💖 A pesar de todo 💖
+    </h2>
+
+
+
+    <div class="glass-card">
+
+        <p>
+            Hemos tenido nuestras diferencias y peleas,
+            pero nunca han sido más grandes que el amor que nos une.
+            Siempre encontramos la forma de seguir adelante juntos.
+        </p>
+
+
+    </div>
+
+
+
+    <div class="photo-frame">
+
+        <img src="img/img5.jpg">
+
+    </div>
+
+
+
+    <button class="btn-love" onclick="go(4)">
+
+        Seguir ❤️
+
+    </button>
+
+
+</section>
+
+
+
+
+
+
+<!-- ============================= -->
+<!-- ESCENA 4 - COSAS QUE AMO -->
+<!-- ============================= -->
+
+
+<section class="screen" id="s4">
+
+
+<h2>
+    ❤️ Cosas que amo de ti ❤️
+</h2>
+
+
+
+<div class="love-grid">
+
+
+    <div class="love-card">
+        ❤️ Tu sonrisa que ilumina mis días
+    </div>
+
+    <div class="love-card">
+        ❤️ Tus abrazos que me hacen sentir en casa
+    </div>
+
+    <div class="love-card">
+        ❤️ Tu forma de cuidarme y preocuparte por mí
+    </div>
+
+    <div class="love-card">
+        ❤️ Lo tierna y cariñosa que eres conmigo
+    </div>
+
+    <div class="love-card">
+        ❤️ Tu lado sensible que demuestra el gran corazón que tienes
+    </div>
+
+    <div class="love-card">
+        ❤️ Tu manera de hacerme reír incluso en los días difíciles
+    </div>
+
+    <div class="love-card">
+        ❤️ Tu forma juguetona que siempre saca mi sonrisa
+    </div>
+
+    <div class="love-card">
+        ❤️ La tranquilidad que siento cuando estoy contigo
+    </div>
+
+    <div class="love-card">
+        ❤️ La hermosa persona que eres por dentro y por fuera
+    </div>
+
+    <div class="love-card">
+        ❤️ Cada pequeño detalle que haces sin darte cuenta
+    </div>
+
+
+</div>
+
+
+
+<button class="btn-love" onclick="go(5)">
+
+    Nuestros recuerdos ❤️
+
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ============================= -->
+<!-- ESCENA 5 - GALERÍA -->
+<!-- ============================= -->
+
+
+<section class="screen" id="s5">
+
+
+<h2>
+    📸 Nuestros recuerdos
+</h2>
+
+
+
+<div class="gallery">
+
+
+    <img src="img/img1.jpg">
+
+
+    <img src="img/img3.jpg">
+
+
+    <img src="img/img6.jpg">
+
+
+    <img src="img/img11.jpg">
+
+
+</div>
+
+
+
+<button class="btn-love" onclick="go(6)">
+
+    Continuar ❤️
+
+</button>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ============================= -->
+<!-- ESCENA 6 - TIEMPO -->
+<!-- ============================= -->
+
+
+<section class="screen" id="s6">
+
+
+<h2>
+    ⌛ Nuestro tiempo
+</h2>
+
+
+
+<div class="glass-card">
+
+
+<p>
+    Cada segundo que pasa, me enamoro más de ti...
+</p>
+
+
+<div class="counter">
+
+
+    <div>
+        <span id="days">0</span>
+        <small>Días</small>
+    </div>
+
+
+    <div>
+        <span id="hours">0</span>
+        <small>Horas</small>
+    </div>
+
+
+    <div>
+        <span id="minutes">0</span>
+        <small>Minutos</small>
+    </div>
+
+
+    <div>
+        <span id="seconds">0</span>
+        <small>Segundos</small>
+    </div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<img class="memory-large" src="img/img7.jpg">
+
+
+
+<button class="btn-love" onclick="go(7)">
+
+    Leer algo especial 💌
+
+</button>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ============================= -->
+<!-- ESCENA 7 - CARTA -->
+<!-- ============================= -->
+
+
+<section class="screen" id="s7">
+
+
+<h2>
+    💌 Para ti
+</h2>
+
+
+
+<div class="letter">
+
+
+<p>
+
+Mi amor...
+
+</p>
+
+
+<p>
+
+Gracias por llegar a mi vida,
+por cada sonrisa,
+cada abrazo y cada momento.
+
+</p>
+
+
+<p>
+
+No prometo que todo será perfecto,
+pero sí prometo seguir eligiéndote.
+
+</p>
+
+
+<p>
+
+Porque contigo quiero seguir creando
+muchas historias más.
+
+❤️
+
+</p>
+
+
+</div>
+
+
+
+<button class="btn-love" onclick="go(8)">
+
+    Último recuerdo ❤️
+
+</button>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ============================= -->
+<!-- ESCENA 8 - FINAL -->
+<!-- ============================= -->
+
+
+<section class="screen" id="s8">
+
+
+<h1 class="final-title">
+
+❤️ Siempre serás tú
+
+</h1>
+
+
+
+<img src="img/img9.jpg" class="final-photo">
+
+
+
+<button class="btn-love" onclick="secret()">
+
+    Abrir sorpresa 💝
+
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+<!-- JS -->
+
+<script src="js/script.js"></script>
+
+
+</body>
+
+</html>
