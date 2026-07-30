@@ -52,28 +52,46 @@
 </button>
 
 
+<!-- ============================= -->
+<!-- ESCENA 0 - PANTALLA DE BLOQUEO -->
+<!-- ============================= -->
+<section class="screen active" id="s0">
+    <div class="screen-content">
+        <span class="small-title">Acceso Especial</span>
+        <h1>🔒 Un pequeño secreto...</h1>
+        <p>Ingresa la fecha especial para desbloquear nuestra historia ❤️</p>
+        
+        <div class="glass-card my-3" style="max-width: 350px;">
+            <input 
+                type="password" 
+                id="passwordInput" 
+                class="form-control text-center custom-input" 
+                placeholder="Ingresa la contraseña" 
+                maxlength="6"
+            >
+            <div id="errorMsg" class="error-msg" style="display: none;">
+                Contraseña incorrecta, ¡piensa en una fecha especial! 🙈
+            </div>
+        </div>
 
+        <button class="btn-love" onclick="checkPassword()">
+            Desbloquear ❤️
+        </button>
+    </div>
+</section>
 
 <!-- ============================= -->
 <!-- ESCENA 1 - INTRO -->
 <!-- ============================= -->
-
-
-<section class="screen active" id="s1">
-
-
+<section class="screen" id="s1">
     <div class="screen-content">
-
-
         <span class="small-title">
             Una historia que nadie esperaba
         </span>
 
-
         <h1>
             ❤️ Nuestra Historia ❤️
         </h1>
-
 
         <p>
             Hay historias que nacen con el tiempo...
@@ -83,23 +101,11 @@
             Fue amor a primera vista, y desde ese día comenzó todo.
         </p>
 
-
         <button class="btn-love" onclick="go(2)">
-
             Comenzar nuestra historia
-
         </button>
-
-
     </div>
-
-
 </section>
-
-
-
-
-
 
 <!-- ============================= -->
 <!-- ESCENA 2 - EL INICIO -->

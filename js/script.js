@@ -48,6 +48,30 @@ function drawStars(){
 drawStars();
 
 /* =====================================
+   🔒 VERIFICACIÓN DE CONTRASEÑA
+===================================== */
+function checkPassword() {
+    const input = document.getElementById("passwordInput");
+    const errorMsg = document.getElementById("errorMsg");
+    const correctPass = "010326";
+
+    if (input.value === correctPass) {
+        errorMsg.style.display = "none";
+        go(1); // Avanza a la Escena 1 (Intro)
+    } else {
+        errorMsg.style.display = "block";
+        input.value = ""; // Limpia el campo en caso de error
+    }
+}
+
+// Permitir presionar la tecla "Enter" para verificar
+document.getElementById("passwordInput")?.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        checkPassword();
+    }
+});
+
+/* =====================================
    🎬 CAMBIO DE ESCENAS
 ===================================== */
 function go(numero){
@@ -164,7 +188,7 @@ function secret(){
 
     overlay.innerHTML=`
         <h1 class="final-title">
-            ❤️ Gracias por existir
+            Gracias por existir
         </h1>
 
         <p>
