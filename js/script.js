@@ -263,44 +263,47 @@ function isSolvable(arr) {
 }
 
 /* =====================================
-   💝 FINAL CINEMATOGRÁFICO
+   💝 FINAL CINEMATOGRÁFICO ELABORADO
 ===================================== */
 function secret(){
+    // Ocultar botones y el botón de música
     document.querySelectorAll(".btn-love, .music-btn").forEach(el=>{
         el.style.display="none";
     });
 
+    // Crear el overlay cinematográfico con estructura avanzada
     const overlay = document.createElement("div");
-    overlay.className="overlay";
+    overlay.className="overlay-love-final";
 
     overlay.innerHTML=`
-        <h1 class="final-title">
-            Gracias por existir
-        </h1>
-        <p>
-            Si pudiera volver al primer día...
-            <br>
-            volvería a elegirte.
-        </p>
-        <p>
-            Una y otra vez.
-        </p>
-        <h2>
-            Siempre serás tú ❤️
-        </h2>
-         <p>
-            Porque lo nuestro no tiene un final,
-            <br>
-            nuestra historia continuará...
-        </p>
+        <div class="final-card-content">
+            <span class="final-small-tag">Para el amor de mi vida</span>
+            <h1 class="final-main-title">Gracias por existir ❤️</h1>
+            
+            <div class="final-photo-wrapper">
+                <img src="img/img5.jpg" alt="Nuestro amor" class="final-heart-photo">
+            </div>
+
+            <div class="final-romantic-text">
+                <p class="fade-text">Si pudiera volver al primer día...</p>
+                <p class="fade-text">volvería a elegirte una y otra vez.</p>
+                <p class="fade-text highlight-text">Porque lo nuestro no tiene final, y nuestra historia continuará eternamente...</p>
+            </div>
+
+            <h2 class="final-signature">Siempre serás tú 💖</h2>
+            
+            <button class="btn-restart" onclick="location.reload()">Volver a vivir nuestra historia ✨</button>
+        </div>
     `;
 
     document.body.appendChild(overlay);
 
+    // Activar la aparición suave
     setTimeout(() => {
         overlay.classList.add("active");
-    }, 100);
+    }, 150);
 
+    // Lanzar explosión de corazones romántica
     createExplosion();
 }
 

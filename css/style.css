@@ -495,3 +495,134 @@ p {
   20%, 60% { transform: translateX(-6px); }
   40%, 80% { transform: translateX(6px); }
 }
+
+/* =====================================
+   ✨ ESTILOS PARA EL FINAL CINEMATOGRÁFICO
+===================================== */
+.overlay-love-final {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, #2a0836, #0f0214, #000000);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out;
+    overflow-y: auto;
+}
+
+.overlay-love-final.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.final-card-content {
+    max-width: 600px;
+    width: 100%;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 159, 189, 0.3);
+    border-radius: 25px;
+    box-shadow: 0 0 50px rgba(255, 77, 136, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.05);
+    animation: scaleUpFinal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scaleUpFinal {
+    0% { transform: scale(0.85); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.final-small-tag {
+    color: var(--pink-light);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.final-main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    color: white;
+    text-shadow: 0 0 20px rgba(255, 77, 136, 0.8);
+    margin-bottom: 15px;
+}
+
+.final-photo-wrapper {
+    width: 140px;
+    height: 140px;
+    margin: 15px auto;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    box-shadow: 0 0 25px rgba(255, 77, 136, 0.7);
+    animation: heartBeat 3s infinite ease-in-out;
+}
+
+.final-heart-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); box-shadow: 0 0 35px rgba(255, 77, 136, 1); }
+}
+
+.final-romantic-text {
+    margin: 20px 0;
+}
+
+.final-romantic-text p {
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    color: #ffd1dc;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.highlight-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: white !important;
+    font-size: 1.15rem !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.final-signature {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--pink-light);
+    margin: 15px 0 20px 0;
+    text-shadow: 0 0 15px rgba(255, 77, 136, 0.6);
+}
+
+.btn-restart {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-restart:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-color: var(--pink);
+    box-shadow: 0 0 10px rgba(255, 77, 136, 0.4);
+}
