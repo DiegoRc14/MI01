@@ -6,7 +6,7 @@
   --pink-light: #ff9fbd;
   --purple: #8b2cff;
   --dark: #05010a;
-  --black-true: #000000; /* Negro total para la sorpresa final */
+  --black-true: #000000;
   --glass: rgba(255, 255, 255, 0.08);
 }
 
@@ -25,7 +25,7 @@ html, body {
   background: radial-gradient(circle at top, #3b0a42, #120018, #05010a);
   color: white;
   font-family: 'Poppins', sans-serif;
-  overflow: hidden; /* Evita scroll global */
+  overflow: hidden;
 }
 
 /* =========================
@@ -37,12 +37,12 @@ html, body {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 1; /* Estrellas al fondo */
+  z-index: 1;
   pointer-events: none;
 }
 
 /* =========================
-   PANTALLAS (Ahora más centradas y adaptables)
+   PANTALLAS
 ========================= */
 .screen {
   position: absolute;
@@ -58,7 +58,7 @@ html, body {
   transform: scale(1.05) translateY(20px);
   filter: blur(10px);
   transition: all 0.8s ease;
-  z-index: 3; /* Contenido por encima de estrellas y corazones */
+  z-index: 3;
 }
 
 .screen.active {
@@ -68,18 +68,17 @@ html, body {
   filter: blur(0);
 }
 
-/* !!! NUEVO: Contenedor interno para asegurar scroll y centrado !!! */
 .screen-content {
     width: 100%;
-    max-width: 1000px; /* Ancho máximo opcional */
+    max-width: 1000px;
     max-height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 15px; /* Espacio interno global por pantalla */
+    padding: 15px;
     text-align: center;
-    overflow-y: auto; /* Permite scroll vertical dentro de cada pantalla si el contenido es mucho */
+    overflow-y: auto;
 }
 
 /* =========================
@@ -88,7 +87,7 @@ html, body {
 h1, h2 {
   font-family: 'Playfair Display', serif;
   text-shadow: 0 0 20px rgba(255, 77, 136, 0.7);
-  margin-bottom: 10px; /* Reducción de margen inferior */
+  margin-bottom: 10px;
 }
 
 h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
@@ -98,8 +97,8 @@ p {
   color: #ffe8ef;
   max-width: 650px;
   font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-  line-height: 1.5; /* Línea de texto más compacta */
-  margin: 0 auto 10px auto; /* Reducción de margen inferior */
+  line-height: 1.5;
+  margin: 0 auto 10px auto;
 }
 
 .small-title {
@@ -107,7 +106,7 @@ p {
   letter-spacing: 2px;
   text-transform: uppercase;
   font-size: 0.75rem;
-  margin-bottom: 10px; /* Reducción de margen inferior */
+  margin-bottom: 10px;
   display: block;
 }
 
@@ -115,8 +114,8 @@ p {
    BOTONES
 ========================= */
 .btn-love {
-  margin-top: 20px; /* Reducción de margen superior */
-  padding: 10px 30px; /* Reducción de padding interno */
+  margin-top: 20px;
+  padding: 10px 30px;
   border: none;
   border-radius: 50px;
   color: white;
@@ -139,9 +138,9 @@ p {
 ========================= */
 .glass-card {
   width: min(650px, 95%);
-  padding: 20px 15px; /* Reducción de padding interno */
-  margin: 10px auto; /* Reducción de margen superior/inferior */
-  background: rgba(255, 255, 255, 0.06); /* Ligeramente más transparente */
+  padding: 20px 15px;
+  margin: 10px auto;
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-radius: 20px;
@@ -150,17 +149,17 @@ p {
 }
 
 /* =========================
-   FOTOS & MARCOS (Centrado corregido)
+   FOTOS & MARCOS
 ========================= */
 .photo-frame {
-  max-width: 250px; /* Reducción de ancho máximo */
+  max-width: 250px;
   width: 42%;
-  max-height: 300px; /* Reducción de altura máxima */
+  max-height: 300px;
   border-radius: 20px;
   padding: 5px;
   background: linear-gradient(135deg, #ff4d88, #8b2cff);
   animation: floating 5s infinite ease-in-out;
-  margin: 15px auto; /* !!! CAMBIO CLAVE: Margen automático para centrar !!! */
+  margin: 15px auto;
 }
 
 .photo-frame img {
@@ -173,41 +172,60 @@ p {
 
 .memory-large, .final-photo {
   max-width: 90%;
-  max-height: 250px; /* Reducción de altura máxima */
+  max-height: 250px;
   object-fit: cover;
   border-radius: 20px;
   box-shadow: 0 10px 25px black;
-  margin: 15px auto; /* !!! CAMBIO CLAVE: Margen automático para centrar !!! */
-}
-
-.final-photo {
-  box-shadow: 0 0 30px rgba(255, 77, 136, 0.6);
+  margin: 15px auto;
 }
 
 /* =========================
-   GALERIA
+   GALERÍA TIPO COLLAGE PINTEREST (SIN ESPACIOS VACÍOS)
 ========================= */
 .gallery {
-  width: 95%;
-  max-width: 900px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Columnas más compactas */
-  gap: 10px; /* Espacio reducido entre fotos */
-  margin: 10px auto; /* Margen reducido superior/inferior */
+    width: 95%;
+    max-width: 800px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas simétricas para un control total del espacio */
+    grid-auto-rows: 140px; /* Altura base de cada celda modular */
+    gap: 6px; /* Pequeño margen estético entre fotos */
+    margin: 15px auto;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
 }
 
+/* Cada imagen rellena su celda perfectamente sin deformarse */
 .gallery img {
-  width: 100%;
-  height: 150px; /* Altura de foto reducida */
-  object-fit: cover;
-  border-radius: 15px;
-  transition: transform 0.4s, box-shadow 0.4s;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Patrón simétrico en 2 columnas que asegura cero huecos vacíos */
+.gallery img:nth-child(3n + 1) {
+    grid-column: span 2;
+    grid-row: span 2; /* Foto principal grande arriba */
+}
+
+.gallery img:nth-child(3n + 2) {
+    grid-column: span 1;
+    grid-row: span 2; /* Foto vertical alta */
+}
+
+.gallery img:nth-child(3n + 3) {
+    grid-column: span 1;
+    grid-row: span 2; /* Foto vertical alta complementaria */
 }
 
 .gallery img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 20px var(--pink);
+    transform: scale(1.02);
+    filter: brightness(1.1);
+    z-index: 2;
 }
 
 /* =========================
@@ -215,18 +233,18 @@ p {
 ========================= */
 .love-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Columnas más compactas */
-  gap: 10px; /* Espacio reducido entre tarjetas */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
   width: 95%;
   max-width: 800px;
-  max-height: 50vh; /* Altura máxima reducida */
+  max-height: 50vh;
   overflow-y: auto;
   padding: 5px;
-  margin: 10px auto; /* Margen reducido superior/inferior */
+  margin: 10px auto;
 }
 
 .love-card {
-  padding: 15px 12px; /* Reducción de padding interno */
+  padding: 15px 12px;
   border-radius: 15px;
   background: var(--glass);
   backdrop-filter: blur(10px);
@@ -249,12 +267,12 @@ p {
   flex-wrap: wrap;
   gap: 8px;
   justify-content: center;
-  margin-top: 10px; /* Margen reducido superior */
+  margin-top: 10px;
 }
 
 .counter div {
   background: rgba(255, 255, 255, 0.06);
-  padding: 10px 15px; /* Reducción de padding interno */
+  padding: 10px 15px;
   border-radius: 12px;
   min-width: 60px;
 }
@@ -277,23 +295,91 @@ p {
 ========================= */
 .letter {
   width: min(700px, 95%);
-  padding: 20px 15px; /* Reducción de padding interno */
+  padding: 20px 15px;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 20px;
   font-family: 'Playfair Display', serif;
   font-size: clamp(0.95rem, 3vw, 1.1rem);
-  line-height: 1.6; /* Texto más compacto */
-  margin: 10px auto; /* Margen reducido superior/inferior */
+  line-height: 1.6;
+  margin: 10px auto;
 }
 
 /* =========================
-   CORAZONES FLOTANTES (Corregidos)
+   PUZZLE ROMÁNTICO
+========================= */
+.puzzle-container {
+    width: 280px;
+    height: 280px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    margin: 15px auto;
+    transition: all 0.8s ease;
+}
+
+.puzzle-piece {
+    background-image: url('../img/img9.jpg');
+    background-size: 280px 280px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, border 0.5s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.puzzle-piece:hover {
+    transform: scale(0.97);
+    box-shadow: 0 0 10px var(--pink);
+}
+
+.puzzle-piece.empty {
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    cursor: default;
+}
+
+/* EFECTO DE ILUMINACIÓN Y FOTO COMPLETA CUANDO GANA */
+.puzzle-container.solved {
+    gap: 0px; /* Elimina las líneas de separación */
+    padding: 0px;
+    border: 2px solid var(--pink-light);
+    box-shadow: 0 0 35px rgba(255, 77, 136, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.5);
+    animation: glowEffect 1.5s infinite alternate ease-in-out;
+}
+
+.puzzle-container.solved .puzzle-piece {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+@keyframes glowEffect {
+    0% {
+        box-shadow: 0 0 20px rgba(255, 77, 136, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 40px rgba(255, 77, 136, 1), inset 0 0 25px rgba(255, 255, 255, 0.8);
+    }
+}
+
+.puzzle-success {
+    margin-top: 15px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* =========================
+   CORAZONES FLOTANTES
 ========================= */
 .heart {
   position: fixed;
-  z-index: 2; /* !!! CAMBIO CLAVE: Corazones DETRÁS del contenido (.screen tiene z-index 3) !!! */
+  z-index: 2;
   pointer-events: none;
   animation: float 4s linear forwards;
 }
@@ -305,7 +391,7 @@ p {
   position: fixed;
   right: 15px;
   top: 15px;
-  z-index: 100; /* Botón siempre visible y clicleable */
+  z-index: 100;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -318,11 +404,11 @@ p {
 }
 
 /* =========================
-   ANIMACIONES, OVERLAY (SORPRESA FINAL)
+   ANIMACIONES Y OVERLAY
 ========================= */
 @keyframes floating {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); } /* Flotación más suave */
+  50% { transform: translateY(-8px); }
 }
 
 @keyframes float {
@@ -330,27 +416,25 @@ p {
     100% { transform: translateY(-100vh); opacity: 0; }
 }
 
-/* !!! CAMBIOS CLAVE: Sorpresa final totalmente oscura y suave !!! */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--black-true); /* Fondo negro total */
-  z-index: 9999; /* Por encima de TODO */
+  background-color: var(--black-true);
+  z-index: 9999;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 30px;
   text-align: center;
-  opacity: 0; /* Empieza invisible */
-  visibility: hidden; /* Oculto para evitar clics */
-  transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out; /* Transición ultra suave */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out;
 }
 
-/* Clase para activar la sorpresa suavemente */
 .overlay.active {
     opacity: 1;
     visibility: visible;
@@ -372,30 +456,6 @@ p {
     font-size: clamp(1.1rem, 3vw, 1.3rem);
     max-width: 700px;
     margin-bottom: 15px;
-}
-
-/* =========================
-   RESPONSIVE (CELULARES PEQUEÑOS)
-========================= */
-@media (max-width: 576px) {
-    /* !!! CAMBIO CLAVE: No forzar centrado vertical, dejar scroll natural !!! */
-    .screen {
-        align-items: center; /* Contenido empieza arriba en móviles */
-    }
-
-    .screen-content {
-        justify-content: center;
-        padding: 15px;
-    }
-
-    .love-grid {
-        max-height: 66vh; /* Altura máxima reducida en móviles */
-    }
-
-    .counter div {
-        padding: 8px 12px;
-        min-width: 50px;
-    }
 }
 
 /* =========================

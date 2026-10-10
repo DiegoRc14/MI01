@@ -57,14 +57,13 @@ function checkPassword() {
 
     if (input.value === correctPass) {
         errorMsg.style.display = "none";
-        go(1); // Avanza a la Escena 1 (Intro)
+        go(1);
     } else {
         errorMsg.style.display = "block";
-        input.value = ""; // Limpia el campo en caso de error
+        input.value = "";
     }
 }
 
-// Permitir presionar la tecla "Enter" para verificar
 document.getElementById("passwordInput")?.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         checkPassword();
@@ -84,18 +83,20 @@ function go(numero){
         if(next){
             next.classList.add("active");
             animateText(next);
+            if(numero === 8) {
+                initPuzzle(); // Inicia y mezcla el puzzle al llegar a la escena final
+            }
         }
     },400);
 }
 
 /* =====================================
-   ✍️ TEXTO ANIMADO (Seguro con HTML)
+   ✍️ TEXTO ANIMADO
 ===================================== */
 function animateText(section) {
     const texts = section.querySelectorAll("p");
 
     texts.forEach(text => {
-        // Guardamos el texto sin romper los saltos de línea
         if (!text.dataset.original) {
             text.dataset.original = text.innerHTML;
         }
@@ -104,7 +105,6 @@ function animateText(section) {
         text.innerHTML = "";
         text.style.opacity = "0";
         
-        // Aparición suave y limpia en lugar de escribir código HTML
         setTimeout(() => {
             text.innerHTML = original;
             text.style.transition = "opacity 1s ease";
@@ -153,7 +153,6 @@ function toggleMusic(){
 /* =====================================
    ⌛ CONTADOR
 ===================================== */
-// !!! AJUSTA TU FECHA DE INICIO AQUÍ !!!
 const startDate = new Date("2026-03-01T00:00:00"); 
 
 function updateCounter(){
@@ -175,36 +174,120 @@ setInterval(updateCounter, 1000);
 updateCounter();
 
 /* =====================================
+   🧩 LÓGICA DEL PUZZLE ROMÁNTICO
+===================================== */
+let board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const winningState = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+
+function initPuzzle() {
+    const successDiv = document.getElementById("puzzleSuccess");
+    if (successDiv) successDiv.style.display = "none";
+    
+    const container = document.getElementById("puzzleBoard");
+    if (container) container.classList.remove("solved");
+
+    do {
+        for (let i = board.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [board[i], board[j]] = [board[j], board[i]];
+        }
+    } while (isSolved() || !isSolvable(board));
+
+    renderPuzzle();
+}
+
+function renderPuzzle() {
+    const container = document.getElementById("puzzleBoard");
+    if (!container) return;
+    container.innerHTML = "";
+
+    const solved = isSolved();
+
+    board.forEach((val, index) => {
+        const piece = document.createElement("div");
+        piece.className = "puzzle-piece";
+        
+        // Si ya está resuelto, mostramos todas las piezas incluyendo la última con su respectivo fondo
+        if (val === 8 && !solved) {
+            piece.classList.add("empty");
+        } else {
+            const x = (val % 3) * 50; 
+            const y = Math.floor(val / 3) * 50;
+            piece.style.backgroundPosition = `${x}% ${y}%`;
+            
+            if (!solved) {
+                piece.onclick = () => movePiece(index);
+            }
+        }
+        container.appendChild(piece);
+    });
+
+    if (solved) {
+        container.classList.add("solved");
+    }
+}
+
+function movePiece(index) {
+    const emptyIndex = board.indexOf(8);
+    const row = Math.floor(index / 3);
+    const emptyRow = Math.floor(emptyIndex / 3);
+    const col = index % 3;
+    const emptyCol = emptyIndex % 3;
+
+    if (Math.abs(row - emptyRow) + Math.abs(col - emptyCol) === 1) {
+        board[emptyIndex] = board[index];
+        board[index] = 8;
+        
+        renderPuzzle();
+
+        if (isSolved()) {
+            const successDiv = document.getElementById("puzzleSuccess");
+            if (successDiv) successDiv.style.display = "block";
+        }
+    }
+}
+
+function isSolved() {
+    return board.every((val, i) => val === winningState[i]);
+}
+
+function isSolvable(arr) {
+    let inversions = 0;
+    const cleanArr = arr.filter(v => v !== 8);
+    for (let i = 0; i < cleanArr.length - 1; i++) {
+        for (let j = i + 1; j < cleanArr.length; j++) {
+            if (cleanArr[i] > cleanArr[j]) inversions++;
+        }
+    }
+    return inversions % 2 === 0;
+}
+
+/* =====================================
    💝 FINAL CINEMATOGRÁFICO
 ===================================== */
 function secret(){
-    // Ocultar botones y el botón de música
     document.querySelectorAll(".btn-love, .music-btn").forEach(el=>{
         el.style.display="none";
     });
 
     const overlay = document.createElement("div");
-    overlay.className="overlay"; // Empieza invisible en el CSS
+    overlay.className="overlay";
 
     overlay.innerHTML=`
         <h1 class="final-title">
             Gracias por existir
         </h1>
-
         <p>
             Si pudiera volver al primer día...
             <br>
             volvería a elegirte.
         </p>
-
         <p>
             Una y otra vez.
         </p>
-
         <h2>
             Siempre serás tú ❤️
         </h2>
-
          <p>
             Porque lo nuestro no tiene un final,
             <br>
@@ -214,7 +297,6 @@ function secret(){
 
     document.body.appendChild(overlay);
 
-    // Activar la transición suave después de un pequeño retraso
     setTimeout(() => {
         overlay.classList.add("active");
     }, 100);
@@ -234,7 +316,7 @@ function createExplosion(){
             heart.style.left = Math.random()*100+"vw";
             heart.style.top = "100vh";
             heart.style.fontSize = Math.random()*30+15+"px";
-            heart.style.zIndex="10000"; // Por encima de la superposición negra (z-index: 9999)
+            heart.style.zIndex="10000";
             heart.style.animation = "float 4s linear forwards";
             document.body.appendChild(heart);
 
